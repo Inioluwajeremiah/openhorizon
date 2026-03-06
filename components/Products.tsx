@@ -254,7 +254,10 @@ export default function Products() {
             </div>
 
             {/* CTA */}
-            <button
+            <a
+              href={prod.link}
+              target={prod.link ? "_blank" : undefined}
+              rel={prod.link ? "noopener noreferrer" : undefined}
               className="btn-primary"
               style={{
                 alignSelf: "flex-start",
@@ -263,7 +266,7 @@ export default function Products() {
               }}
             >
               {prod.status === "Live" ? "Launch App →" : "Join Waitlist →"}
-            </button>
+            </a>
           </div>
 
           {/* Right: Visual */}

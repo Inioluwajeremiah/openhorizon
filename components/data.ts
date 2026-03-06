@@ -8,6 +8,7 @@ export interface Product {
   accent: string;
   features: string[];
   status: "Live" | "Coming Soon";
+  link: string;
 }
 
 export const PRODUCTS: Product[] = [
@@ -18,7 +19,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Learn. Quiz. Earn.",
     desc: "High school students master subjects through AI-powered quizzes and earn OPHIN tokens — real cryptocurrency deployed on Solana — as rewards for academic achievement.",
     icon: "📚",
-    accent: "#00E5A0",
+    accent: "#008080",
     features: [
       "AI-Adaptive Quizzes",
       "OPHIN Token Rewards",
@@ -26,6 +27,7 @@ export const PRODUCTS: Product[] = [
       "Multi-Subject",
     ],
     status: "Live",
+    link: "https://learnchain.openhorizoninnovations.com/",
   },
   {
     id: "scryptyra",
@@ -41,7 +43,8 @@ export const PRODUCTS: Product[] = [
       "Industry Format",
       "Character Arcs",
     ],
-    status: "Coming Soon",
+    status: "Live",
+    link: "https://scryptyra.openhorizoninnovations.com/",
   },
   {
     id: "soundwave",
@@ -58,6 +61,7 @@ export const PRODUCTS: Product[] = [
       "Collaboration",
     ],
     status: "Coming Soon",
+    link: "",
   },
   {
     id: "lifewave",
@@ -74,5 +78,6 @@ export const PRODUCTS: Product[] = [
       "Community",
     ],
     status: "Coming Soon",
+    link: "",
   },
 ];
