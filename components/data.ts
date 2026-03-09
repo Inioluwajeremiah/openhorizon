@@ -47,8 +47,8 @@ export const PRODUCTS: Product[] = [
     link: "https://scryptyra.openhorizoninnovations.com/",
   },
   {
-    id: "soundwave",
-    name: "SoundWave",
+    id: "echosynth",
+    name: "EchoSynth",
     tag: "Music · Generative AI",
     tagline: "Compose without limits.",
     desc: "Generate original music with AI. From lo-fi beats to orchestral compositions, SoundWave turns your ideas into fully produced tracks using state-of-the-art generative models.",
@@ -61,7 +61,7 @@ export const PRODUCTS: Product[] = [
       "Collaboration",
     ],
     status: "Coming Soon",
-    link: "",
+    link: "https://echosynth.openhorizoninnovations.com/",
   },
   {
     id: "lifewave",
