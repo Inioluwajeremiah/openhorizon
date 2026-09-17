@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Cta() {
   return (
     <section id="contact" className="cta-section">
@@ -41,7 +43,7 @@ export default function Cta() {
 
         <div className="cta-btns">
           <button className="btn-primary">Start with LearnChain →</button>
-          <button className="btn-secondary">Contact Us</button>
+          <Link href="/contact" className="btn-secondary">Contact Us</Link>
         </div>
       </div>
     </section>

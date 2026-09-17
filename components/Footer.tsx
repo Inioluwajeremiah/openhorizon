@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { PRODUCTS } from './data'
 
 export default function Footer() {
@@ -37,9 +38,9 @@ export default function Footer() {
       {/* Product links */}
       <nav className="footer-links">
         {PRODUCTS.map((p) => (
-          <a key={p.id} href="#products" className="footer-link">
+          <Link key={p.id} href="/#products" className="footer-link">
             {p.name}
-          </a>
+          </Link>
         ))}
       </nav>
 

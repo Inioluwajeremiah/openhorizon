@@ -1,13 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useTheme } from './ThemeProvider'
 
 const NAV_ITEMS = [
-  { label: 'Products',   href: '#products' },
-  { label: 'Technology', href: '#technology' },
-  { label: 'About',      href: '#about' },
-  { label: 'Contact',    href: '#contact' },
+  { label: 'Products',   href: '/#products' },
+  { label: 'Technology', href: '/#technology' },
+  { label: 'About',      href: '/#about' },
+  { label: 'Contact',    href: '/contact' },
 ]
 
 export default function Navbar() {
@@ -35,19 +36,19 @@ export default function Navbar() {
     <>
       <nav className={`nav${scrolled || menuOpen ? ' scrolled' : ''}`}>
         {/* Logo */}
-        <a href="#hero" className="nav-logo" onClick={closeMenu}>
+        <Link href="/" className="nav-logo" onClick={closeMenu}>
           <div className="nav-logo-icon">O</div>
           <div>
             <div className="nav-logo-name">Open Horizon</div>
             <div className="nav-logo-sub">Innovations</div>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="nav-links">
           {NAV_ITEMS.map(item => (
             <li key={item.label}>
-              <a href={item.href} className="nav-link">{item.label}</a>
+              <Link href={item.href} className="nav-link">{item.label}</Link>
             </li>
           ))}
         </ul>
@@ -88,14 +89,14 @@ export default function Navbar() {
       {/* Mobile drawer */}
       <div className={`nav-drawer${menuOpen ? ' open' : ''}`}>
         {NAV_ITEMS.map(item => (
-          <a
+          <Link
             key={item.label}
             href={item.href}
             className="nav-drawer-link"
             onClick={closeMenu}
           >
             {item.label}
-          </a>
+          </Link>
         ))}
         <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--border)' }}>
           <span className="token-badge" style={{ fontSize: 12 }}>$OPHIN · Solana</span>

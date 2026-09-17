@@ -1,14 +1,41 @@
 'use client'
 
+import { useState } from 'react'
 import { PRODUCTS } from './data'
 
+const BAR_COLORS = [
+  'var(--accent-green)',
+  'var(--accent-blue)',
+  'var(--accent-purple)',
+  'var(--accent-orange)',
+  'var(--accent-sky)',
+  'var(--accent-green)',
+  'var(--accent-blue)',
+  'var(--accent-purple)',
+]
+
 export default function Hero() {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setTilt({
+      x: (e.clientX - rect.left) / rect.width - 0.5,
+      y: (e.clientY - rect.top) / rect.height - 0.5,
+    })
+  }
+
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 })
+
+  const liveCount = PRODUCTS.filter((p) => p.status === 'Live').length
+  const floaters = PRODUCTS.filter((p) => p.id !== 'learnchain').slice(0, 3)
+
   return (
-    <section id="hero" className="hero grid-bg">
+    <section id="hero" className="hero">
       {/* Ambient orbs */}
       <div
         className="hero-orb"
@@ -41,59 +68,111 @@ export default function Hero() {
         }}
       />
 
-      {/* Badge */}
-      <div className="hero-badge">
-        <span className="hero-badge-dot" />
-        Building the future of digital experiences
-      </div>
+      <div className="hero-inner">
+        {/* Left: copy */}
+        <div className="hero-content">
+          <div className="hero-badge">
+            <span className="hero-badge-dot" />
+            Building the future of digital experiences
+          </div>
 
-      {/* Title */}
-      <h1 className="hero-title">
-        Where{' '}
-        <span className="grad-green">Intelligence</span>
-        <br />
-        Meets{' '}
-        <span className="grad-warm">Innovation</span>
-      </h1>
+          <h1 className="hero-title">
+            Where{' '}
+            <span className="grad-green">Intelligence</span>
+            <br />
+            Meets{' '}
+            <span className="grad-warm">Innovation</span>
+          </h1>
 
-      {/* Subtitle */}
-      <p className="hero-subtitle">
-        Open Horizon Innovations builds AI-integrated, blockchain-powered web applications
-        that transform how people learn, create, connect, and express themselves.
-      </p>
+          <p className="hero-subtitle">
+            Open Horizon Innovations builds AI-integrated, blockchain-powered web applications
+            that transform how people learn, create, connect, and express themselves.
+          </p>
 
-      {/* CTAs */}
-      <div className="hero-ctas">
-        <button className="btn-primary" onClick={() => scrollTo('products')}>
-          Explore Products →
-        </button>
-        <button className="btn-secondary" onClick={() => scrollTo('technology')}>
-          Our Technology
-        </button>
-      </div>
+          <div className="hero-ctas">
+            <button className="btn-primary" onClick={() => scrollTo('products')}>
+              Explore Products →
+            </button>
+            <button className="btn-secondary" onClick={() => scrollTo('technology')}>
+              Our Technology
+            </button>
+          </div>
+        </div>
 
-      {/* Product pills */}
-      <div className="hero-product-pills">
-        {PRODUCTS.map((p, i) => (
+        {/* Right: floating product dashboard */}
+        <div
+          className="hero-visual-perspective"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <div
-            key={p.id}
-            className="hero-pill"
+            className="hero-visual-scene"
             style={{
-              animationDelay: `${i * 0.55}s`,
-              borderColor: `${p.accent}22`,
+              transform: `rotateY(${tilt.x * 14}deg) rotateX(${tilt.y * -14}deg)`,
             }}
-            onClick={() => scrollTo('products')}
           >
-            <span className="hero-pill-icon">{p.icon}</span>
-            <div>
-              <div className="hero-pill-name">{p.name}</div>
-              <div className="hero-pill-tag" style={{ color: p.accent }}>
-                {p.tag.split('·')[0].trim()}
+            <div className="hero-visual-glow" />
+
+            <div className="hero-main-card">
+              <div className="hero-main-card-header">
+                <span className="hero-main-card-logo">◆</span>
+                <div>
+                  <div className="hero-main-card-title">Open Horizon Ecosystem</div>
+                  <div className="hero-main-card-sub">
+                    <span className="live-dot" />
+                    All systems operational
+                  </div>
+                </div>
+              </div>
+
+              <div className="hero-main-card-stats">
+                <div className="hero-stat-tile">
+                  <div className="hero-stat-value">{PRODUCTS.length}</div>
+                  <div className="hero-stat-label">Products</div>
+                </div>
+                <div className="hero-stat-tile">
+                  <div className="hero-stat-value" style={{ color: 'var(--accent-green)' }}>
+                    {liveCount} Live
+                  </div>
+                  <div className="hero-stat-label">Shipping</div>
+                </div>
+                <div className="hero-stat-tile">
+                  <div className="hero-stat-value font-mono">$OPHIN</div>
+                  <div className="hero-stat-label">Solana Token</div>
+                </div>
+              </div>
+
+              <div className="hero-main-card-bars">
+                {BAR_COLORS.map((color, i) => (
+                  <span
+                    key={i}
+                    className="hero-bar"
+                    style={{ animationDelay: `${i * 0.12}s`, background: color }}
+                  />
+                ))}
               </div>
             </div>
-            {p.status === 'Live' && <span className="live-dot" />}
+
+            {floaters.map((p, i) => (
+              <div key={p.id} className={`hero-float-slot hero-float-slot-${i + 1}`}>
+                <div
+                  className="hero-float-card"
+                  style={{ borderColor: `${p.accent}40`, animationDelay: `${i * 0.4}s` }}
+                  onClick={() => scrollTo('products')}
+                >
+                  <span className="hero-float-icon">{p.icon}</span>
+                  <div>
+                    <div className="hero-float-name">{p.name}</div>
+                    <div className="hero-float-tag" style={{ color: p.accent }}>
+                      {p.status === 'Live' ? 'Live' : 'Coming Soon'}
+                    </div>
+                  </div>
+                  {p.status === 'Live' && <span className="live-dot" />}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Scroll hint */}
