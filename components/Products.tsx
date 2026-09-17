@@ -3,6 +3,152 @@
 import { useState } from "react";
 import { PRODUCTS, Product } from "./data";
 
+function ProductMockupBody({ product }: { product: Product }) {
+  switch (product.id) {
+    case "learnchain":
+      return (
+        <>
+          <div className="quiz-progress-track">
+            <div
+              className="quiz-progress-fill"
+              style={{ width: "40%", background: product.accent }}
+            />
+          </div>
+          <div className="quiz-question">
+            Which pigment absorbs light for photosynthesis?
+          </div>
+          <div
+            className="quiz-option"
+            style={{
+              borderColor: product.accent,
+              color: product.accent,
+              background: `${product.accent}12`,
+              fontWeight: 600,
+            }}
+          >
+            Chlorophyll <span>✓</span>
+          </div>
+          <div className="quiz-option">Carotenoid</div>
+          <div className="quiz-option">Melanin</div>
+          <div className="quiz-reward">
+            <span>Correct! Reward earned</span>
+            <span className="quiz-reward-value" style={{ color: product.accent }}>
+              +250 $OPHIN
+            </span>
+          </div>
+        </>
+      );
+
+    case "scryptyra":
+      return (
+        <>
+          <div className="script-slug" style={{ color: product.accent }}>
+            INT. COFFEE SHOP — DAY
+          </div>
+          <p className="script-line">
+            MAYA sits by the window, laptop open, coffee untouched.
+          </p>
+          <p className="script-line" style={{ marginTop: 10 }}>
+            MAYA
+          </p>
+          <p className="script-line" style={{ paddingLeft: 18 }}>
+            &ldquo;Some stories choose you.&rdquo;
+          </p>
+          <div className="script-typing" style={{ color: product.accent }}>
+            <span className="script-typing-dot" />
+            <span
+              className="script-typing-dot"
+              style={{ animationDelay: "0.15s" }}
+            />
+            <span
+              className="script-typing-dot"
+              style={{ animationDelay: "0.3s" }}
+            />
+            <span
+              style={{ marginLeft: 6, color: "var(--text-muted)", fontSize: 11 }}
+            >
+              AI co-writer typing…
+            </span>
+          </div>
+        </>
+      );
+
+    case "echosynth":
+      return (
+        <>
+          <div className="waveform-bars">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span
+                key={i}
+                className="hero-bar"
+                style={{
+                  background: i % 2 ? product.accent : "var(--accent-blue)",
+                  animationDelay: `${i * 0.1}s`,
+                }}
+              />
+            ))}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 600, fontSize: 13 }}>
+                Lo-fi Chill Beat
+              </div>
+              <div
+                style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 2 }}
+              >
+                Generating…
+              </div>
+            </div>
+            <span
+              style={{
+                fontFamily: "JetBrains Mono, monospace",
+                fontSize: 12,
+                color: product.accent,
+              }}
+            >
+              0:32
+            </span>
+          </div>
+        </>
+      );
+
+    case "lifewave":
+      return (
+        <>
+          <div className="feed-post-header">
+            <div
+              className="feed-avatar"
+              style={{ background: `${product.accent}18`, color: product.accent }}
+            >
+              🌊
+            </div>
+            <div>
+              <div style={{ fontWeight: 600, fontSize: 13 }}>@driftwood</div>
+              <div style={{ color: "var(--text-muted)", fontSize: 11 }}>2m ago</div>
+            </div>
+          </div>
+          <p className="feed-post-text">
+            Just shipped the redesign. Small team, big horizon. 🚀
+          </p>
+          <div className="feed-post-actions">
+            <span>♡ 12</span>
+            <span>💬 4</span>
+            <span>↻ 2</span>
+          </div>
+        </>
+      );
+
+    default:
+      return null;
+  }
+}
+
 function ProductVisual({ product }: { product: Product }) {
   return (
     <div
@@ -11,128 +157,26 @@ function ProductVisual({ product }: { product: Product }) {
         background: `linear-gradient(135deg, ${product.accent}09 0%, var(--bg) 100%)`,
       }}
     >
-      {/* Decorative rings */}
-      <div className="visual-rings">
-        {[350, 260, 170].map((size, i) => (
-          <div
-            key={size}
-            className="visual-ring"
-            style={{
-              width: size,
-              height: size,
-              borderColor: `${product.accent}${20 + i * 8}`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Center icon */}
       <div
-        className="visual-center-icon"
+        className="product-visual-glow"
         style={{
-          background: `linear-gradient(135deg, ${product.accent}22, ${product.accent}0e)`,
-          borderColor: `${product.accent}45`,
-          boxShadow: `0 0 60px ${product.accent}28`,
+          background: `radial-gradient(circle, ${product.accent}18 0%, transparent 70%)`,
         }}
-      >
-        {product.icon}
+      />
+
+      <div className="product-mockup" style={{ borderColor: `${product.accent}30` }}>
+        <div className="product-mockup-bar">
+          <span className="product-mockup-dot" />
+          <span className="product-mockup-dot" />
+          <span className="product-mockup-dot" />
+          <span className="product-mockup-bar-label">
+            {product.name.toLowerCase()}.app
+          </span>
+        </div>
+        <div className="product-mockup-body">
+          <ProductMockupBody product={product} />
+        </div>
       </div>
-
-      {/* Context floaters */}
-      {product.id === "learnchain" && (
-        <>
-          <div className="visual-floater" style={{ top: "18%", right: "8%" }}>
-            <div
-              style={{
-                color: "#00E5A0",
-                fontWeight: 700,
-                fontFamily: "JetBrains Mono, monospace",
-              }}
-            >
-              +250 OPHIN
-            </div>
-            <div
-              style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 2 }}
-            >
-              Quiz reward earned
-            </div>
-          </div>
-          <div className="visual-floater" style={{ bottom: "22%", left: "7%" }}>
-            <div style={{ fontWeight: 600, fontSize: 13 }}>
-              Math · Science · History
-            </div>
-            <div
-              style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 2 }}
-            >
-              12 subjects available
-            </div>
-          </div>
-        </>
-      )}
-
-      {product.id === "scryptyra" && (
-        <div
-          className="visual-floater"
-          style={{ top: "20%", right: "8%", maxWidth: 180 }}
-        >
-          <div
-            style={{
-              color: "#FF6B35",
-              fontWeight: 700,
-              fontFamily: "JetBrains Mono, monospace",
-              fontSize: 11,
-            }}
-          >
-            INT. COFFEE SHOP — DAY
-          </div>
-          <div
-            style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 4 }}
-          >
-            AI writing next scene...
-          </div>
-        </div>
-      )}
-
-      {product.id === "soundwave" && (
-        <div
-          className="visual-floater"
-          style={{
-            bottom: "20%",
-            right: "8%",
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-          }}
-        >
-          <span style={{ color: "#A855F7", fontSize: 18 }}>♪</span>
-          <div>
-            <div style={{ fontWeight: 600, fontSize: 13 }}>
-              Lo-fi Chill Beat
-            </div>
-            <div
-              style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 2 }}
-            >
-              Generating 0:32...
-            </div>
-          </div>
-        </div>
-      )}
-
-      {product.id === "lifewave" && (
-        <div
-          className="visual-floater"
-          style={{ top: "18%", left: "8%", maxWidth: 172 }}
-        >
-          <div style={{ color: "#38BDF8", fontWeight: 700 }}>
-            Just shipped! 🚀
-          </div>
-          <div
-            style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 3 }}
-          >
-            12 reactions · 4 replies
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -71,8 +71,8 @@ export default function Hero() {
       <div className="hero-inner">
         {/* Left: copy */}
         <div className="hero-content">
-          <div className="hero-badge">
-            <span className="hero-badge-dot" />
+          <div className="eyebrow">
+            <span className="eyebrow-bar" />
             Building the future of digital experiences
           </div>
 

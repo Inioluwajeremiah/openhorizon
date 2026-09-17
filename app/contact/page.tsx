@@ -1,42 +1,54 @@
-'use client'
+"use client";
 
-import { useState, type FormEvent } from 'react'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import { useState, type FormEvent } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const CONTACT_EMAIL = 'scryptyrao@openhorizoninnovations.com'
+const CONTACT_EMAIL = "scryptyra@openhorizoninnovations.com";
 
-const REASONS = ['General Inquiry', 'Product Support', 'Partnerships', 'Press', 'Careers']
+const REASONS = [
+  "General Inquiry",
+  "Product Support",
+  "Partnerships",
+  "Press",
+  "Careers",
+];
 
 interface FormState {
-  name: string
-  email: string
-  reason: string
-  message: string
+  name: string;
+  email: string;
+  reason: string;
+  message: string;
 }
 
 export default function ContactPage() {
   const [form, setForm] = useState<FormState>({
-    name: '',
-    email: '',
+    name: "",
+    email: "",
     reason: REASONS[0],
-    message: '',
-  })
-  const [sent, setSent] = useState(false)
+    message: "",
+  });
+  const [sent, setSent] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
-  }
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const subject = encodeURIComponent(`[${form.reason}] Message from ${form.name}`)
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`)
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-    setSent(true)
-  }
+    e.preventDefault();
+    const subject = encodeURIComponent(
+      `[${form.reason}] Message from ${form.name}`
+    );
+    const body = encodeURIComponent(
+      `${form.message}\n\n— ${form.name} (${form.email})`
+    );
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
 
   return (
     <>
@@ -49,9 +61,10 @@ export default function ContactPage() {
             style={{
               width: 460,
               height: 460,
-              top: '0%',
-              left: '6%',
-              background: 'radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 68%)',
+              top: "0%",
+              left: "6%",
+              background:
+                "radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 68%)",
             }}
           />
           <div
@@ -59,23 +72,27 @@ export default function ContactPage() {
             style={{
               width: 380,
               height: 380,
-              top: '10%',
-              right: '4%',
-              background: 'radial-gradient(circle, rgba(0,163,255,0.07) 0%, transparent 68%)',
+              top: "10%",
+              right: "4%",
+              background:
+                "radial-gradient(circle, rgba(0,163,255,0.07) 0%, transparent 68%)",
             }}
           />
           <div className="container">
-            <div className="hero-badge">
-              <span className="hero-badge-dot" />
+            <div className="eyebrow">
+              <span className="eyebrow-bar" />
               Get In Touch
             </div>
             <h1 className="hero-title" style={{ maxWidth: 640 }}>
-              Let&apos;s start a{' '}
+              Let&apos;s start a{" "}
               <span className="grad-green">conversation</span>
             </h1>
-            <p className="hero-subtitle" style={{ maxWidth: 560, marginBottom: 0 }}>
-              Questions about a product, a partnership idea, or press inquiry — the Open
-              Horizon team reads every message.
+            <p
+              className="hero-subtitle"
+              style={{ maxWidth: 560, marginBottom: 0 }}
+            >
+              Questions about a product, a partnership idea, or press inquiry —
+              the Open Horizon team reads every message.
             </p>
           </div>
         </section>
@@ -84,19 +101,28 @@ export default function ContactPage() {
         <section className="contact-section">
           <div className="container contact-grid">
             <div className="contact-info">
-              <div className="section-label" style={{ color: 'var(--accent-green)' }}>
+              <div
+                className="section-label"
+                style={{ color: "var(--accent-green)" }}
+              >
                 Contact Details
               </div>
-              <h2 className="section-title" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)' }}>
+              <h2
+                className="section-title"
+                style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)" }}
+              >
                 We&apos;d love to hear from you.
               </h2>
               <p>
-                Reach out directly by email, or use the form and we&apos;ll get back to you as
-                soon as we can.
+                Reach out directly by email, or use the form and we&apos;ll get
+                back to you as soon as we can.
               </p>
 
               <div className="contact-info-cards">
-                <a href={`mailto:${CONTACT_EMAIL}`} className="contact-info-card">
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="contact-info-card"
+                >
                   <span className="contact-info-icon">✉️</span>
                   <div>
                     <div className="contact-info-label">Email us</div>
@@ -107,7 +133,9 @@ export default function ContactPage() {
                   <span className="contact-info-icon">⚡</span>
                   <div>
                     <div className="contact-info-label">Response time</div>
-                    <div className="contact-info-value">Within 1–2 business days</div>
+                    <div className="contact-info-value">
+                      Within 1–2 business days
+                    </div>
                   </div>
                 </div>
               </div>
@@ -119,8 +147,9 @@ export default function ContactPage() {
                   <div style={{ fontSize: 40 }}>✅</div>
                   <h3>Your email app should be open</h3>
                   <p>
-                    We prefilled a message addressed to {CONTACT_EMAIL} — just hit send from
-                    there. If nothing opened, email us directly at that address.
+                    We prefilled a message addressed to {CONTACT_EMAIL} — just
+                    hit send from there. If nothing opened, email us directly at
+                    that address.
                   </p>
                   <button
                     type="button"
@@ -159,7 +188,12 @@ export default function ContactPage() {
 
                   <div className="form-row">
                     <label htmlFor="reason">What&apos;s this about?</label>
-                    <select id="reason" name="reason" value={form.reason} onChange={handleChange}>
+                    <select
+                      id="reason"
+                      name="reason"
+                      value={form.reason}
+                      onChange={handleChange}
+                    >
                       {REASONS.map((r) => (
                         <option key={r} value={r}>
                           {r}
@@ -184,7 +218,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     className="btn-primary"
-                    style={{ width: '100%', justifyContent: 'center' }}
+                    style={{ width: "100%", justifyContent: "center" }}
                   >
                     Send Message →
                   </button>
@@ -196,5 +230,5 @@ export default function ContactPage() {
       </main>
       <Footer />
     </>
-  )
+  );
 }

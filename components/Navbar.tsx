@@ -55,7 +55,9 @@ export default function Navbar() {
 
         {/* Right controls */}
         <div className="nav-right">
-          <span className="token-badge">$OPHIN · Solana</span>
+          <span className="token-badge">
+            <span className="token-badge-value">$OPHIN</span> Solana
+          </span>
 
           <button
             className="theme-toggle"
@@ -99,7 +101,9 @@ export default function Navbar() {
           </Link>
         ))}
         <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--border)' }}>
-          <span className="token-badge" style={{ fontSize: 12 }}>$OPHIN · Solana</span>
+          <span className="token-badge" style={{ fontSize: 12, borderLeft: 'none', paddingLeft: 0 }}>
+            <span className="token-badge-value">$OPHIN</span> Solana
+          </span>
         </div>
       </div>
 

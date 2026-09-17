@@ -6,11 +6,10 @@ import Technology from '@/components/Technology'
 import About from '@/components/About'
 import Cta from '@/components/Cta'
 import Footer from '@/components/Footer'
-import ThemeProvider from '@/components/ThemeProvider'
 
 export default function Home() {
   return (
-    <ThemeProvider>
+    <>
       <Navbar />
       <main>
         <Hero />
@@ -21,6 +20,6 @@ export default function Home() {
         <Cta />
       </main>
       <Footer />
-    </ThemeProvider>
+    </>
   )
 }
