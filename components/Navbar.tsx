@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useTheme } from './ThemeProvider'
+import LogoMark from './LogoMark'
 
 const NAV_ITEMS = [
   { label: 'Products',   href: '/#products' },
@@ -37,7 +38,7 @@ export default function Navbar() {
       <nav className={`nav${scrolled || menuOpen ? ' scrolled' : ''}`}>
         {/* Logo */}
         <Link href="/" className="nav-logo" onClick={closeMenu}>
-          <div className="nav-logo-icon">O</div>
+          <LogoMark size={36} id="nav-mark" />
           <div>
             <div className="nav-logo-name">Open Horizon</div>
             <div className="nav-logo-sub">Innovations</div>

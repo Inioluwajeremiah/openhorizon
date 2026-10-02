@@ -1,28 +1,13 @@
 import Link from 'next/link'
 import { PRODUCTS } from './data'
+import LogoMark from './LogoMark'
 
 export default function Footer() {
   return (
     <footer className="footer">
       {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <div
-          style={{
-            width: 30,
-            height: 30,
-            borderRadius: 9,
-            background: 'linear-gradient(135deg, #00E5A0, #00A3FF)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 14,
-            fontWeight: 800,
-            color: '#000',
-            flexShrink: 0,
-          }}
-        >
-          O
-        </div>
+        <LogoMark size={30} id="footer-mark" />
         <span
           style={{
             fontFamily: 'Syne, sans-serif',
